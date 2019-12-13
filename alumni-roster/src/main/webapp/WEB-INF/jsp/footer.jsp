@@ -37,15 +37,15 @@
           </div>
           <div class="span3">
             <div class="widget">
-              <h5 class="widgetheading">Get in touch with us</h5>
+              <h5 class="widgetheading">Hire me!</h5>
               <address>
-								<strong>Capston Claim</strong><br>
-								 Park Ave S.01<br>
-								 Ballwin 16425 MO
+								<strong>Brandon Schumacher</strong><br>
+								 225 Sugar Ct<br>
+								 Troy, MO 63379
 					 		</address>
               <p>
-                <i class="icon-phone"></i> (123) 456-7890 - (123) 555-7891 <br>
-                <i class="icon-envelope-alt"></i> email@domainname.com
+                <i class="icon-phone"></i> (719) 235-8756 <br>
+                <i class="icon-envelope-alt"></i> btschumacher@gmail.com
               </p>
             </div>
           </div>
@@ -57,10 +57,10 @@
             <div class="span6">
               <div class="copyright">
                 <p>
-                  <span>&copy; ClaimAcademy - All right reserved.</span>
+                  <span>&copy; Brandon Schumacher - All rights reserved.</span>
                 </p>
                 <div class="credits">
-                  Designed by <a href="#">Claim Academy</a>
+                  Designed by <a href="#">Brandon Schumacher</a>
                 </div>
               </div>
             </div>
