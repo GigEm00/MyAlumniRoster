@@ -12,7 +12,7 @@
 
 <head>
 <meta charset="utf-8">
-<title>Profile</title>
+<title>My Alumni Roster</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="" />
 <meta name="author" content="" />
@@ -59,49 +59,52 @@
 
 <body>
 	<div id="wrapper">
-		<!-- toggle top area -->
-		<div class="hidden-top">
-			<div class="hidden-top-inner container">
-				<div class="row">
-					<div class="span12">
-						<ul>
-							<li><strong>We are available for any custom works
-									this month</strong></li>
-							<li>Main office: Springville center X264, Park Ave S.01</li>
-							<li>Call us <i class="icon-phone"></i> (123) 456-7890 -
-								(123) 555-7891
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- end toggle top area -->
+
+
 		<!-- start header -->
 		<jsp:include page="header.jsp" />
-
 		<!-- end header -->
-		<section id="inner-headline">
-			<div class="container">
+
+		<!-- Green Navigation Bar Nav Items -->
+		<section id="inner-headline" style="background-color: #274e13;">
+			<div class="container" style="background-color: #274e13;">
 				<div class="row">
 					<div class="span4">
 						<div class="inner-heading">
-							<h2>Profile</h2>
+							<h2>
+								<strong>My</strong> Roster
+							</h2>
 						</div>
 					</div>
+
 					<div class="span8">
 						<ul class="breadcrumb">
-							<li class="nav-item text-left">
-								<form class="form-search">
-									<input placeholder="Type something" type="text"
-										class="input-medium search-query">
-									<button type="submit" class="btn btn-square btn-theme">Search</button>
-								</form>
-							</li>
-							<li><a href="#"><i class="icon-home"></i></a><i
+							<li><a href="index"><i class="icon-home"></i></a><i
 								class="icon-angle-right"></i></li>
-							<li><a href="index">Home</a><i class="icon-angle-right"></i></li>
-							<li class="active">Profile</li>
+							<c:if
+								test="${loggedInUser.role eq 'ADMIN' and user.email eq loggedInUser.email}">
+								<li class="${_users}"><a href="users">Users </a><i
+									class="icon-angle-right"></i></li>
+							</c:if>
+							<li><a href="about">About Us</a><i class="icon-angle-right"></i></li>
+							<li class="${_contact}"><a href="contact">Contact </a><i
+								class="icon-angle-right"></i></li>
+							<c:choose>
+								<c:when test="${empty loggedInUser}">
+									<li class="${_login}"><a href="login">Login </a><i
+										class="icon-angle-right"></i></li>
+									<li class="${_register}"><a href="register">Register </a><i
+										class="icon-angle-right"></i></li>
+								</c:when>
+								<c:otherwise>
+									<li class="${_profile}"><a
+										href="myprofile-${loggedInUser.id}">My Roster </a><i
+										class="icon-angle-right"></i></li>
+									<li><a href="logout">Logout </a><i
+										class="icon-angle-right"></i></li>
+								</c:otherwise>
+							</c:choose>
+
 						</ul>
 					</div>
 				</div>
@@ -114,51 +117,45 @@
 						<h4>
 							<i class="icon-user"> </i> <strong>${user.fname}
 								${user.lname}</strong>
-							<c:if test="${user.email eq loggedInUser.email}">
-								<button type="button" class="btn btn-primary btn-rounded"
-									data-toggle="modal" data-target="#addImages">
-									<i class="fas fa-plus"> Upload Images</i>
-								</button>
-							</c:if>
 						</h4>
 						<p class="text-info">
 							<small>${msg} ${sucess}</small>
 						</p>
+
+						<!-- Begin My Roster Tabs -->
+						<!-- Begin Tab headings -->
 						<ul class="nav nav-tabs bold">
-							<li class="active"><a href="#one" data-toggle="tab"> <i
-									class="icon-info-sign"></i> Contact Info
-							</a></li>
+
 							<c:if test="${user.email eq loggedInUser.email}">
-								<li class=""><a href="#two" data-toggle="tab"> <i
-										class="icon-pencil"></i>Update Profile
+								<li class=""><a href="#one" data-toggle="tab"> <i
+										class="icon-pencil"></i>My College
 								</a></li>
-								<li class=""><a href="#three" data-toggle="tab"> <i
+								<li class=""><a href="#two" data-toggle="tab"> <i
 										class="icon-lock"></i>Reset Password
 								</a></li>
 							</c:if>
-							<li class=""><a href="#four" data-toggle="tab"><i
-									class="icon-camera-retro"></i>Images</a></li>
-
 						</ul>
+						<!-- End Tab Headings -->
+						<!-- Begin Tab content -->
 						<div class="tab-content">
+							<!-- TAB ONE (1) -->
 							<div class="tab-pane active" id="one">
 								<p>
-									First Name: ${user.fname}<br> Last Name: ${user.lname} <br>
-									Phone: ${user.tel}<br> State: ${user.state} <br>
-									Email: ${user.email}
+									${user.fname} ${user.lname} <br> ${user.tel}<br>
+									${user.email}
 								</p>
-							</div>
-							<div class="tab-pane" id="two">
+								<!-- 	Update Name, Phone -->
 								<form:form modelAttribute="customer" action="editUser"
 									method="POST" class="form-horizontal">
+									<!-- First Name -->
 									<div class="control-group">
 										<label class="control-label" for="fname">First Name</label>
 										<div class="controls">
 											<form:input path="fname" value="${user.fname}" type="text"
 												id="fname" placeholder="first name" required="true" />
 										</div>
-
 									</div>
+									<!-- Last Name -->
 									<div class="control-group">
 										<label class="control-label" for="lname">Last Name</label>
 										<div class="controls">
@@ -166,33 +163,33 @@
 												id="inputEmail" placeholder="last name" required="true" />
 										</div>
 									</div>
-
+									<!-- Phone number -->
 									<div class="control-group">
 										<label class="control-label" for="tel">Phone</label>
 										<div class="controls">
 											<form:input path="tel" value="${user.tel}" id="tel"
 												placeholder="Phone" required="true" />
 										</div>
-
 									</div>
-
+									<!-- Select a College -->
 									<form:input path="id" type="hidden" id="id" value="${user.id}"
 										required="true" />
-									<div class="controls">
-										<form:select path="college" name="college"
-											class="form-control input-sm">
-											<%-- <c:choose> --%>
-											<%-- <c:when test="${empty colleges}"> --%>
-											<option value="">Select College</option>
-											<%-- </c:when> 
-					<c:otherwise>
-					 <option value="${colleges}" >${colleges}</option>
-					</c:otherwise> --%>
-											<%-- </c:choose> --%>
-											<c:forEach items="${colleges}" var="college">
-												<option value="${college}">${college}</option>
-											</c:forEach>
-										</form:select>
+									<div class="control-group">
+										<label class="control-label" for="college">Select a
+											College</label>
+										<div class="controls">
+
+											<form:select path="college" name="college"
+												class="form-control input-sm">
+
+												<option value="">Select College</option>
+
+												<c:forEach items="${colleges}" var="college">
+													<option value="${college}">${college}</option>
+												</c:forEach>
+											</form:select>
+
+										</div>
 									</div>
 									<br>
 									<div class="control-group">
@@ -203,67 +200,38 @@
 									</div>
 								</form:form>
 							</div>
-							<div class="tab-pane" id="three">
-								<p>Cu cum commodo regione definiebas. Cum ea eros laboramus,
-									audire deseruisse his at, munere aeterno ut quo. Et ius doming
-									causae philosophia, vitae bonorum intellegat usu cu.</p>
+							<!-- End Tab ONE (1) -->
+							<!-- TAB TWO (2) Reset Password Tab -->
+							<div class="tab-pane" id="two">
+								<form class="form-horizontal">
+									<div class="control-group">
+										<label class="control-label" for="inputResetEmail">Email</label>
+										<div class="controls">
+											<input type="text" id="inputResetEmail" placeholder="Email">
+										</div>
+									</div>
+									<div class="control-group">
+										<div class="controls">
+											<button type="submit" class="btn">Reset password</button>
+										</div>
+										<p class="aligncenter margintop20">We will send
+											instructions on how to reset your password to your inbox</p>
+									</div>
+								</form>
 							</div>
-							<div class="tab-pane" id="four">
-								<ul id="thumbs" class="portfolio">
-									<!-- Item Project and Filter Name -->
-									<c:forEach var="item" items="${filesname}">
-										<li class="item-thumbs span1 design" data-id="id-0"
-											data-type="web">
-											<!-- Fancybox - Gallery Enabled - Title - Full Image --> <a
-											class="hover-wrap fancybox" data-fancybox-group="gallery"
-											title=""
-											href="${contextPath}//users//myalumniroster//${user.id}//${item}">
-												<span class="overlay-img"></span> <span
-												class="overlay-img-thumb font-icon-plus"></span>
-										</a> <!-- Thumb Image and Description --> <img
-											src="${contextPath}//users//myalumniroster//${user.id}//${item}"
-											alt="">
-
-										</li>
-									</c:forEach>
-									<!-- End Item Project -->
-								</ul>
-
-							</div>
-
+							<!-- End password Reset TAB TWO (2) -->
 						</div>
 						<hr>
-					</div>
-					<div class="span6">
-						<!-- start flexslider -->
-						<div class="flexslider">
-							<ul class="slides">
-								<c:forEach var="item" items="${filesname}">
-									<li><img
-										src="${contextPath}//users//myalumniroster//${user.id}//${item}"
-										alt=""> <c:if test="${user.email eq loggedInUser.email}">
-											<div class="caption">
-												<a href="deleteimage?id=${user.id}&image=${item}"
-													onclick="confirmed(); return false;" title="Delete">
-													Delete <i class="icon-trash"></i>
-												</a> <a href="setasprofile?image=${item}&email=${user.email}"
-													title="Set as profile picture"> Set As Profile Image <i
-													class="icon-user"></i>
-												</a>
-											</div>
-										</c:if></li>
-								</c:forEach>
-							</ul>
-						</div>
-						<!-- end flexslider -->
 					</div>
 				</div>
 			</div>
 
-
+			<!-- Player Cards -->
 			<c:if test="${!empty user.college}">
 				<div class="container">
-					<h4>${user.college}Players</h4>
+					<h3>
+						<strong>${user.college}</strong> Players
+					</h3>
 					<div class="my-players row">
 						<c:forEach var="player" items="${players}">
 							<div class="card span4" style="width: 18rem;">
@@ -271,13 +239,9 @@
 									class="card-img-top card-img" alt="image not found" />
 
 								<div class="card-body">
-									<h5 class="card-title">${player.player.lastName},
-										${player.player.firstName}, ${player.player.primaryPosition}</h5>
-
-
-
-
-
+									<h5 class="card-title">${player.player.firstName} <strong>${player.player.lastName}</strong></h5> 
+										<h5><strong>${player.player.primaryPosition}, 
+										${player.player.currentTeam.abbreviation }</strong></h5>
 
 									<table>
 										<caption></caption>
@@ -337,50 +301,6 @@
 		<jsp:include page="footer.jsp" />
 	</div>
 
-	<div id="addImages" class="modal styled hide fade" tabindex="-1"
-		role="dialog" aria-labelledby="mySignupModalLabel" aria-hidden="true">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal"
-				aria-hidden="true">×</button>
-			<h4 class="text-center" id="mySignupModalLabel">
-				Add <strong>Pictures</strong>
-			</h4>
-		</div>
-		<div class="modal-body">
-			<form enctype="multipart/form-data" action="uploadMultipleFiles"
-				method="POST" class="form-horizontal">
-				<div class="control-group">
-					<div class="controls">
-						<label>Please select:</label> <input id="fileInput" type="file"
-							id="one" name="uploadingFiles" multiple required>
-					</div>
-					<div class="controls">
-						<label>Please select:</label> <input id="fileInput" type="file"
-							id="two" name="uploadingFiles" multiple>
-					</div>
-					<div class="controls">
-						<label>Please select:</label> <input id="fileInput" type="file"
-							id="three" name="uploadingFiles" multiple>
-					</div>
-					<div class="controls">
-						<label>Please select:</label> <input id="fileInput" type="file"
-							id="four" name="uploadingFiles" multiple>
-					</div>
-					<div class="controls">
-						<label>Please select:</label> <input id="fileInput" type="file"
-							id="five" name="uploadingFiles" multiple> <input
-							type="hidden" name="id" value="${user.id}">
-					</div>
-				</div>
-
-				<div class="control-group">
-					<div class="controls">
-						<button type="submit" class="btn">Upload</button>
-					</div>
-				</div>
-			</form>
-		</div>
-	</div>
 
 	<a href="#" class="scrollup"><i
 		class="icon-chevron-up icon-square icon-32 active"></i></a>
@@ -403,8 +323,8 @@
 	<script src="static/js/jquery.slitslider.js"></script>
 	<script src="static/js/animate.js"></script>
 	<!-- Bar value table script -->
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="src/js/horizBarChart.js"></script>
+
+
 
 
 	<!-- Template Custom JavaScript File -->

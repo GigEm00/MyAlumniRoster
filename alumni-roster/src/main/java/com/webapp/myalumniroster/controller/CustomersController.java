@@ -166,7 +166,7 @@ public class CustomersController {
 	@GetMapping("edituser")
 	String edituser(@RequestParam long id, Model model) {
 		model.addAttribute("customer", customerService.findById(id));
-		model.addAttribute("msg", "Update User");
+		model.addAttribute("msg", "User succesfully updated!");
 	return "edituser";		
 	}
 	

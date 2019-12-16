@@ -63,27 +63,45 @@
     <jsp:include page="header.jsp"/>
     
     <!-- end header -->
-    <section id="inner-headline">
-      <div class="container">
+    <section id="inner-headline" style="background-color: #274e13;">
+      <div class="container" style="background-color: #274e13;">
         <div class="row">
           <div class="span4">
             <div class="inner-heading">
-              <h2>Customers</h2>
+              <h2>Users</h2>
               
             </div>
           </div>
           <div class="span8">
-            <ul class="breadcrumb">
-              <li class="nav-item text-left">
-			    <form class="form-search" action="search" method="post">
-                  <input name="name" placeholder="Search Name" type="text" class="input-medium search-query">
-                  <button type="submit" class="btn btn-square btn-theme">Search</button>
-                </form>
-			  </li>
-              <li><a href="#"><i class="icon-home"></i></a><i class="icon-angle-right"></i></li>
-              <li><a href="index">Home</a><i class="icon-angle-right"></i></li>
-              <li class="active">Customers</li>
-            </ul>
+          	<ul class="breadcrumb">
+
+
+							<li><a href="index"><i class="icon-home"></i></a><i
+								class="icon-angle-right"></i></li>
+							
+							<c:if test="${loggedInUser.role eq 'ADMIN' and user.email eq loggedInUser.email}">
+								<li class="${_users}"><a href="users">Users </a>
+								<i class="icon-angle-right"></i></li>
+							</c:if>
+							
+							<li><a href="about">About Us</a><i class="icon-angle-right"></i></li>
+							<li><a href="contact">Contact </a><i class="icon-angle-right"></i></li>
+							<c:choose>
+								<c:when test="${empty loggedInUser}">
+									<li class="${_login}"><a href="login">Login </a><i
+										class="icon-angle-right"></i></li>
+									
+								</c:when>
+								<c:otherwise>
+									<li class="${_profile}"><a
+										href="myprofile-${loggedInUser.id}">My Roster </a><i
+										class="icon-angle-right"></i></li>
+									<li><a href="logout">Logout </a><i
+										class="icon-angle-right"></i></li>
+								</c:otherwise>
+							</c:choose>
+
+						</ul>
           </div>
         </div>
       </div>
@@ -94,7 +112,7 @@
         <div class="row">
           
           <div class="span12">
-            <h4 class="text-success">List of Customers 
+            <h4 class="text-success">Users 
             <br>${msg} ${success}
             <c:if test="${list.size() eq 0}">
             <a href="users" class="btn btn-theme btn-large e_rotateIn">Reload</a>
@@ -104,12 +122,14 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>#</th>
-                  <th>Image</th>
+                  <th>UID</th>
+                  
                   <th>
                   <input type="text" id="searchnow" 
 		             placeholder=" Filter Names (${list.size()}) " 
 		             class="form-control"  >
+		             <br>
+		             Name
                   </th>                  
                   <th>Email</th>
                   <th>Phone</th>
@@ -131,18 +151,7 @@
                   <td>
                     ${item.id}
                   </td>
-                  <td>
-				  <c:choose>
-				  <c:when test="${not empty item.image}">				
-					<a href="myprofile-${item.id}">										
-					<img src="${contextPath}//users//myalumniroster//${item.id}//${item.image}" width="70" height="50"/>
-					</a>
-					</c:when>
-					<c:otherwise>
-					<a href="#"> No Image </a>									    
-					</c:otherwise>
-					</c:choose>									     
-				  </td> 
+                 
                   <td>
                     ${item.fname} ${item.lname}
                   </td>

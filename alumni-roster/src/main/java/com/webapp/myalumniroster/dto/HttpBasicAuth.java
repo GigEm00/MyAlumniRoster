@@ -1,4 +1,4 @@
-package com.webapp.myalumniroster;
+package com.webapp.myalumniroster.dto;
 
 
 

@@ -24,7 +24,8 @@
   <link href="static/css/flexslider.css" rel="stylesheet" />
   <link href="static/css/style.css" rel="stylesheet" />
   <!-- Theme skin -->
-  <link href="static/skins/default.css" rel="stylesheet" />
+
+  <link href="static/skins/green.css" rel="stylesheet" />
   <!-- Fav and touch icons -->
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png" />
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png" />
@@ -36,49 +37,60 @@
 
 <body>
   <div id="wrapper">
-    <!-- toggle top area -->
-    <div class="hidden-top">
-      <div class="hidden-top-inner container">
-        <div class="row">
-          <div class="span12">
-            <ul>
-              <li><strong>We are available for any custom works this month</strong></li>
-              <li>Main office: Springville center X264, Park Ave S.01</li>
-              <li>Call us <i class="icon-phone"></i> (123) 456-7890 - (123) 555-7891</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- end toggle top area -->
+
     <!-- start header -->
      <jsp:include page="header.jsp"/>
     <!-- end header -->
-    <section id="inner-headline">
-      <div class="container">
+    <section id="inner-headline" style="background-color: #274e13;">
+      <div class="container" style="background-color: #274e13;">
         <div class="row">
           <div class="span4">
             <div class="inner-heading">
-              <h2>Get in touch</h2>
+              <h2>Contact Form</h2>
             </div>
           </div>
           <div class="span8">
-            <ul class="breadcrumb">
-              <li><a href="#"><i class="icon-home"></i></a><i class="icon-angle-right"></i></li>
-              <li class="active">Contact</li>
-            </ul>
+       	<ul class="breadcrumb">
+
+
+							<li><a href="index"><i class="icon-home"></i></a><i
+								class="icon-angle-right"></i></li>
+							
+							<c:if test="${loggedInUser.role eq 'ADMIN' and user.email eq loggedInUser.email}">
+								<li class="${_users}"><a href="users">Users </a>
+								<i class="icon-angle-right"></i></li>
+							</c:if>
+							
+							<li><a href="about">About Us</a><i class="icon-angle-right"></i></li>
+							<c:choose>
+								<c:when test="${empty loggedInUser}">
+									<li class="${_login}"><a href="login">Login </a><i
+										class="icon-angle-right"></i></li>
+									<li class="${_register}"><a href="register">Register </a><i
+										class="icon-angle-right"></i></li>
+								</c:when>
+								<c:otherwise>
+									<li class="${_profile}"><a
+										href="myprofile-${loggedInUser.id}">My Roster </a><i
+										class="icon-angle-right"></i></li>
+									<li><a href="logout">Logout </a><i
+										class="icon-angle-right"></i></li>
+								</c:otherwise>
+							</c:choose>
+
+						</ul>
           </div>
         </div>
       </div>
-    </section>
+    </section> 
     <section id="content">
       <div class="container">
         <div class="row">
           <div class="span12">
             <h4>
-            ${msg}<span class="text-danger">${error}</span>
-            Get in touch with us by filling             
-            <strong>contact form below</strong></h4>
+            <%-- ${msg} --%><span class="text-danger">${error}</span>
+           Send us a            
+            <strong>message</strong></h4>
 
             <form action="sendemail" method="post" role="form" class="contactForm">
               
@@ -107,7 +119,6 @@
           </div>
         </div>
       </div>
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22864.11283411948!2d-73.96468908098944!3d40.630720240038435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sbg!4v1540447494452" width="100%" height="380" frameborder="0" style="border:0" allowfullscreen></iframe>
       
     </section>
      <jsp:include page="footer.jsp"/>

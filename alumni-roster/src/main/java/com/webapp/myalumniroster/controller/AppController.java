@@ -19,11 +19,7 @@ public class AppController {
 	 
 	private static final Logger logger=LoggerFactory.getLogger("AppController.class");
 	  
-	@GetMapping("hellow")
-	@ResponseBody
-	String hellow() {		
-	return "Hellow from controller";		
-	}
+
 	
 	@GetMapping("about")
 	String about(Model model) {

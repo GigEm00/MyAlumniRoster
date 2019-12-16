@@ -11,7 +11,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Flattern - Flat and trendy bootstrap site template</title>
+  <title>404-Bad Request</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="" />
   <meta name="author" content="" />
@@ -45,26 +45,12 @@
 
 <body>
   <div id="wrapper">
-    <!-- toggle top area -->
-    <div class="hidden-top">
-      <div class="hidden-top-inner container">
-        <div class="row">
-          <div class="span12">
-            <ul>
-              <li><strong>We are available for any custom works this month</strong></li>
-              <li>Main office: Springville center X264, Park Ave S.01</li>
-              <li>Call us <i class="icon-phone"></i> (123) 456-7890 - (123) 555-7891</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- end toggle top area -->
+
     <!-- start header -->
     <jsp:include page="header.jsp"/>
     <!-- end header -->
-    <section id="inner-headline">
-      <div class="container">
+    <section id="inner-headline" style="background-color: #274e13;">
+      <div class="container" style="background-color: #274e13;">
         <div class="row">
           <div class="span4">
             <div class="inner-heading">
@@ -72,11 +58,33 @@
             </div>
           </div>
           <div class="span8">
-            <ul class="breadcrumb">
-              <li><a href="#"><i class="icon-home"></i></a><i class="icon-angle-right"></i></li>
-              <li><a href="index">Home</a><i class="icon-angle-right"></i></li>
-              <li class="active">Page Not Found</li>
-            </ul>
+	<ul class="breadcrumb">
+
+
+							<li><a href="index"><i class="icon-home"></i></a><i
+								class="icon-angle-right"></i></li>
+							<li class="${_users}"><a href="users">Users </a><i
+								class="icon-angle-right"></i></li>
+							<li><a href="about">About Us</a><i class="icon-angle-right"></i></li>
+							<li class="${_contact}"><a href="contact">Contact </a><i
+								class="icon-angle-right"></i></li>
+							<c:choose>
+								<c:when test="${empty loggedInUser}">
+									<li class="${_login}"><a href="login">Login </a><i
+										class="icon-angle-right"></i></li>
+									<li class="${_register}"><a href="register">Register </a><i
+										class="icon-angle-right"></i></li>
+								</c:when>
+								<c:otherwise>
+									<li class="${_profile}"><a
+										href="myprofile-${loggedInUser.id}">Profile </a><i
+										class="icon-angle-right"></i></li>
+									<li><a href="logout">Logout </a><i
+										class="icon-angle-right"></i></li>
+								</c:otherwise>
+							</c:choose>
+
+						</ul>
           </div>
         </div>
       </div>
@@ -87,8 +95,14 @@
           <div class="span6">
            <h3 class="text-center">
               <span class="text-success"> ${msg} </span><span class="text-error">${error}</span>
-          </h3>
-           <spring:message code="exeption.err"/>
+            </h3>
+             
+           <spring:message code="exeption.err"/><br><br>
+              Try logging back in.  Users will be logged out after 15 minutes of inactivity.
+              <br><br>
+              <a href="login" class="btn btn-theme">Log Back In</a>			
+              
+          
           </div>
           <div class="span6">
             <!-- start flexslider -->

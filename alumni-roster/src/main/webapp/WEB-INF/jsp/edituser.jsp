@@ -37,38 +37,49 @@
 
 <body>
   <div id="wrapper">
-    <!-- toggle top area -->
-    <div class="hidden-top">
-      <div class="hidden-top-inner container">
-        <div class="row">
-          <div class="span12">
-            <ul>
-              <li><strong>We are available for any custom works this month</strong></li>
-              <li>Main office: Springville center X264, Park Ave S.01</li>
-              <li>Call us <i class="icon-phone"></i> (123) 456-7890 - (123) 555-7891</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- end toggle top area -->
+
     <!-- start header -->
     <jsp:include page="header.jsp"/>
     <!-- end header -->
-    <section id="inner-headline">
-      <div class="container">
+    <section id="inner-headline" style="background-color: #274e13;">
+      <div class="container" style="background-color: #274e13;">
         <div class="row">
           <div class="span4">
             <div class="inner-heading">
-              <h2>Update Account</h2>
+              <h2>Edit User</h2>
             </div>
           </div>
           <div class="span8">
-            <ul class="breadcrumb">
-              <li><a href="#"><i class="icon-home"></i></a><i class="icon-angle-right"></i></li>
-              <li><a href="index">Home</a><i class="icon-angle-right"></i></li>
-              <li class="active">Edit Account</li>
-            </ul>
+                    	<ul class="breadcrumb">
+
+
+							<li><a href="index"><i class="icon-home"></i></a><i
+								class="icon-angle-right"></i></li>
+							
+							<c:if test="${loggedInUser.role eq 'ADMIN' and user.email eq loggedInUser.email}">
+								<li class="${_users}"><a href="users">Users </a>
+								<i class="icon-angle-right"></i></li>
+							</c:if>
+							
+							<li><a href="about">About Us</a><i class="icon-angle-right"></i></li>
+							<li><a href="contact">Contact </a><i
+								class="icon-angle-right"></i></li>
+							<c:choose>
+								<c:when test="${empty loggedInUser}">
+									<li class="${_login}"><a href="login">Login </a><i
+										class="icon-angle-right"></i></li>
+									
+								</c:when>
+								<c:otherwise>
+									<li class="${_profile}"><a
+										href="myprofile-${loggedInUser.id}">My Roster </a><i
+										class="icon-angle-right"></i></li>
+									<li><a href="logout">Logout </a><i
+										class="icon-angle-right"></i></li>
+								</c:otherwise>
+							</c:choose>
+
+						</ul>
           </div>
         </div>
       </div>
@@ -113,19 +124,7 @@
                   </div>
                   <div class="control-group">
                   <div class="controls">
-                  <form:select path="state" name="state" class="form-control input-sm">
-					<c:choose>
-					<c:when test="${empty editUser.state}">
-					 <option value="${editUser.state}" >Select State</option>
-					</c:when> 
-					<c:otherwise>
-					 <option value="${editUser.state}" >${editUser.state}</option>
-					</c:otherwise>
-					</c:choose>
-					<c:forEach items="${states}" var="state">							 
-					 <option value="${state}">${state.id}</option>
-					</c:forEach>
-					</form:select>
+                
                  </div>
                  </div>
                  <form:input path="id"  type="hidden" id="id" required="true" />

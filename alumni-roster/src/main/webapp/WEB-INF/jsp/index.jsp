@@ -38,24 +38,55 @@
 
 <body>
   <div id="wrapper">
-    <!-- toggle top area -->
-<!--     <div class="hidden-top">
-      <div class="hidden-top-inner container">
-        <div class="row">
-          <div class="span12">
-            <ul>
-              <li><strong>We are available for any custom works this month</strong></li>
-              <li>Main office: Springville center X264, Park Ave S.01</li>
-              <li>Call us <i class="icon-phone"></i> (123) 456-7890 - (123) 555-7891</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div> -->
-    <!-- end toggle top area -->
+
     <!-- start header -->
     <jsp:include page="header.jsp"/>
     <!-- end header -->
+    
+        <section id="inner-headline" style="background-color: #274e13;">
+      <div class="container" style="background-color: #274e13;">
+        <div class="row">
+          <div class="span4">
+            <div class="inner-heading">
+              
+            </div>
+          </div>
+          <div class="span8">
+         	<ul class="breadcrumb">
+
+
+							<li><a href="index"><i class="icon-home"></i></a><i
+								class="icon-angle-right"></i></li>
+							
+							<c:if test="${loggedInUser.role eq 'ADMIN' and user.email eq loggedInUser.email}">
+								<li class="${_users}"><a href="users">Users </a>
+								<i class="icon-angle-right"></i></li>
+							</c:if>
+							
+							<li><a href="about">About Us</a><i class="icon-angle-right"></i></li>
+							<li class="${_contact}"><a href="contact">Contact </a><i
+								class="icon-angle-right"></i></li>
+							<c:choose>
+								<c:when test="${empty loggedInUser}">
+									<li class="${_login}"><a href="login">Login </a><i
+										class="icon-angle-right"></i></li>
+									<li class="${_register}"><a href="register">Register </a><i
+										class="icon-angle-right"></i></li>
+								</c:when>
+								<c:otherwise>
+									<li class="${_profile}"><a
+										href="myprofile-${loggedInUser.id}">My Roster </a><i
+										class="icon-angle-right"></i></li>
+									<li><a href="logout">Logout </a><i
+										class="icon-angle-right"></i></li>
+								</c:otherwise>
+							</c:choose>
+
+						</ul>
+          </div>
+        </div>
+      </div>
+    </section>
     <section id="featured">
       <!-- start slider -->
       <!-- Slider -->
@@ -75,9 +106,11 @@
               
               <div class="nivo-caption" id="caption-1">
                 <div>
-                  <h2>Your favorite <strong>Players</strong></h2>
+                  <h2>Your favorite <strong>NFL Players</strong></h2><br>
+                  <h2>From your favorite <strong>College</strong></h2><br>
                   <p>
-                    Current NFL player info and stats.
+                     Choose from any college with an active NFL player.<br>
+                     Get instant stats and updates on the players from that college.
                   </p>
                   <a href="register" class="btn btn-theme">Try it now</a>
                 </div>
@@ -85,9 +118,9 @@
               <!-- Slide #2 caption -->
               <div class="nivo-caption" id="caption-2">
                 <div>
-                  <h2>From your favorite <strong>College</strong></h2>
+                   <h2>MyAlumni<strong>Roster</strong></h2>
                   <p>
-                    Choose from any college with an active NFL player.
+                    Sack the time it takes to stay up to speed on your guys.
                   </p>
                   <a href="register" class="btn btn-theme">Try it now</a>
                 </div>
@@ -95,9 +128,9 @@
               <!-- Slide #3 caption -->
               <div class="nivo-caption" id="caption-3">
                 <div>
-                  <h2>Alumni <strong>Roster</strong></h2>
+                  <h2>MyAlumni<strong>Roster</strong></h2>
                   <p>
-                   We bring the updates and stats right to you.
+                   Lazy football fandom done right!
                   </p>
                   <a href="register" class="btn btn-theme">Try it now</a>
                 </div>
@@ -108,7 +141,7 @@
       </div>
       <!-- end slider -->
     </section>
-    <section class="callaction">
+   <!--  <section class="callaction">
       <div class="container">
         <div class="row">
           <div class="span12">
@@ -187,124 +220,124 @@
               </div>
             </div>
           </div>
-        </div>
-        <!-- divider -->
-        <div class="row">
+        </div> -->
+     <!--    <!-- divider -->
+ <!--        <div class="row">
           <div class="span12">
             <div class="solidline">
             </div>
           </div>
         </div>
-        <!-- end divider -->
-        <!-- Portfolio Projects -->
+        end divider
+        Portfolio Projects
         <div class="row">
           <div class="span12">
             <h4 class="heading">Some of recent <strong>works</strong></h4>
             <div class="row">
               <section id="projects">
                 <ul id="thumbs" class="portfolio">
-                  <!-- Item Project and Filter Name -->
+                  Item Project and Filter Name
                   <li class="item-thumbs span3 design" data-id="id-0" data-type="web">
-                    <!-- Fancybox - Gallery Enabled - Title - Full Image -->
+                    Fancybox - Gallery Enabled - Title - Full Image
                     <a class="hover-wrap fancybox" data-fancybox-group="gallery" title="The City" href="img/works/full/image-01-full.jpg">
 						<span class="overlay-img"></span>
 						<span class="overlay-img-thumb font-icon-plus"></span>
 						</a>
-                    <!-- Thumb Image and Description -->
+                    Thumb Image and Description
                     <img src="static/img/works/thumbs/image-01.jpg" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
                   </li>
-                  <!-- End Item Project -->
-                  <!-- Item Project and Filter Name -->
+                  End Item Project
+                  Item Project and Filter Name
                   <li class="item-thumbs span3 design" data-id="id-1" data-type="icon">
-                    <!-- Fancybox - Gallery Enabled - Title - Full Image -->
+                    Fancybox - Gallery Enabled - Title - Full Image
                     <a class="hover-wrap fancybox" data-fancybox-group="gallery" title="The Office" href="img/works/full/image-02-full.jpg">
 						<span class="overlay-img"></span>
 						<span class="overlay-img-thumb font-icon-plus"></span>
 						</a>
-                    <!-- Thumb Image and Description -->
+                    Thumb Image and Description
                     <img src="static/img/works/thumbs/image-02.jpg" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
                   </li>
-                  <!-- End Item Project -->
-                  <!-- Item Project and Filter Name -->
+                  End Item Project
+                  Item Project and Filter Name
                   <li class="item-thumbs span3 photography" data-id="id-2" data-type="illustrator">
-                    <!-- Fancybox - Gallery Enabled - Title - Full Image -->
+                    Fancybox - Gallery Enabled - Title - Full Image
                     <a class="hover-wrap fancybox" data-fancybox-group="gallery" title="The Mountains" href="img/works/full/image-03-full.jpg">
 						<span class="overlay-img"></span>
 						<span class="overlay-img-thumb font-icon-plus"></span>
 						</a>
-                    <!-- Thumb Image and Description -->
+                    Thumb Image and Description
                     <img src="static/img/works/thumbs/image-03.jpg" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
                   </li>
-                  <!-- End Item Project -->
-                  <!-- Item Project and Filter Name -->
+                  End Item Project
+                  Item Project and Filter Name
                   <li class="item-thumbs span3 photography" data-id="id-2" data-type="illustrator">
-                    <!-- Fancybox - Gallery Enabled - Title - Full Image -->
+                    Fancybox - Gallery Enabled - Title - Full Image
                     <a class="hover-wrap fancybox" data-fancybox-group="gallery" title="The Mountains" href="img/works/full/image-04-full.jpg">
 						<span class="overlay-img"></span>
 						<span class="overlay-img-thumb font-icon-plus"></span>
 						</a>
-                    <!-- Thumb Image and Description -->
+                    Thumb Image and Description
                     <img src="static/img/works/thumbs/image-04.jpg" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
                   </li>
-                  <!-- End Item Project -->
-                  <!-- Item Project and Filter Name -->
+                  End Item Project
+                  Item Project and Filter Name
                   <li class="item-thumbs span3 photography" data-id="id-4" data-type="web">
-                    <!-- Fancybox - Gallery Enabled - Title - Full Image -->
+                    Fancybox - Gallery Enabled - Title - Full Image
                     <a class="hover-wrap fancybox" data-fancybox-group="gallery" title="The Sea" href="img/works/full/image-05-full.jpg">
 						<span class="overlay-img"></span>
 						<span class="overlay-img-thumb font-icon-plus"></span>
 						</a>
-                    <!-- Thumb Image and Description -->
+                    Thumb Image and Description
                     <img src="static/img/works/thumbs/image-05.jpg" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
                   </li>
-                  <!-- End Item Project -->
-                  <!-- Item Project and Filter Name -->
+                  End Item Project
+                  Item Project and Filter Name
                   <li class="item-thumbs span3 photography" data-id="id-5" data-type="icon">
-                    <!-- Fancybox - Gallery Enabled - Title - Full Image -->
+                    Fancybox - Gallery Enabled - Title - Full Image
                     <a class="hover-wrap fancybox" data-fancybox-group="gallery" title="Clouds" href="img/works/full/image-06-full.jpg">
 						<span class="overlay-img"></span>
 						<span class="overlay-img-thumb font-icon-plus"></span>
 						</a>
-                    <!-- Thumb Image and Description -->
+                    Thumb Image and Description
                     <img src="static/img/works/thumbs/image-06.jpg" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
                   </li>
-                  <!-- End Item Project -->
-                  <!-- Item Project and Filter Name -->
+                  End Item Project
+                  Item Project and Filter Name
                   <li class="item-thumbs span3 photography" data-id="id-2" data-type="illustrator">
-                    <!-- Fancybox - Gallery Enabled - Title - Full Image -->
+                    Fancybox - Gallery Enabled - Title - Full Image
                     <a class="hover-wrap fancybox" data-fancybox-group="gallery" title="The Mountains" href="img/works/full/image-07-full.jpg">
 						<span class="overlay-img"></span>
 						<span class="overlay-img-thumb font-icon-plus"></span>
 						</a>
-                    <!-- Thumb Image and Description -->
+                    Thumb Image and Description
                     <img src="static/img/works/thumbs/image-07.jpg" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
                   </li>
-                  <!-- End Item Project -->
-                  <!-- Item Project and Filter Name -->
+                  End Item Project
+                  Item Project and Filter Name
                   <li class="item-thumbs span3 design" data-id="id-0" data-type="web">
-                    <!-- Fancybox - Gallery Enabled - Title - Full Image -->
+                    Fancybox - Gallery Enabled - Title - Full Image
                     <a class="hover-wrap fancybox" data-fancybox-group="gallery" title="The Dark" href="img/works/full/image-08-full.jpg">
 						<span class="overlay-img"></span>
 						<span class="overlay-img-thumb font-icon-plus"></span>
 						</a>
-                    <!-- Thumb Image and Description -->
+                    Thumb Image and Description
                     <img src="static/img/works/thumbs/image-08.jpg" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
                   </li>
-                  <!-- End Item Project -->
+                  End Item Project
                 </ul>
               </section>
             </div>
           </div>
         </div>
-        <!-- End Portfolio Projects -->
-        <!-- divider -->
+        End Portfolio Projects
+        divider
         <div class="row">
           <div class="span12">
             <div class="solidline">
             </div>
           </div>
         </div>
-        <!-- end divider -->
+        end divider
         <div class="row">
           <div class="span12">
             <h4>Very satisfied <strong>clients</strong></h4>
@@ -373,7 +406,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section>  -->
     <section id="bottom">
       <div class="container">
         <div class="row">
